@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Helpdesk</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+            <a class="navbar-brand" href="#">Helpdesk</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item"><a class="nav-link" href="#">Inicio</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Mi Perfil</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Cerrar Sesión</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <div class="main-container d-flex">
+        <aside class="sidebar bg-light">
+            <ul class="nav flex-column">
+                <li class="nav-item"><a class="nav-link" href="#">Dashboard</a></li>
+                <li class="nav-item"><a class="nav-link" href="#">Tickets Abiertos</a></li>
+                <li class="nav-item"><a class="nav-link" href="#">Tickets Cerrados</a></li>
+                <li class="nav-item"><a class="nav-link" href="#">Reportes</a></li>
+                <li class="nav-item"><a class="nav-link" href="#">Configuración</a></li>
+            </ul>
+        </aside>
+        <main class="content p-4">
+            <section class="charts">
+                <h2>Gráficos de Tickets</h2>
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">Tickets Pendientes</h5>
+                                <div class="chart" id="pending-tickets">
+                                    <canvas id="pendingTickets"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">Tickets Cerrados</h5>
+                                <div class="chart" id="closed-tickets">
+                                    <canvas id="closedTickets"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">Tickets Abiertos</h5>
+                                <div class="chart" id="open-tickets">
+                                    <canvas id="openTickets"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row mt-4">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">Distribución de Tickets</h5>
+                                <div class="chart">
+                                    <canvas id="pieChart"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section class="actions mt-4">
+                <a class="btn btn-primary" href="#">Crear Nuevo Ticket</a>
+            </section>
+        </main>
+    </div>
+    <footer class="bg-primary text-white text-center py-3">
+        <p>&copy; 2024. Todos los derechos reservados.</p>
+        <ul class="list-unstyled">
+            <li class="d-inline mx-2"><a class="text-white" href="#">Privacidad</a></li>
+            <li class="d-inline mx-2"><a class="text-white" href="#">Términos de Servicio</a></li>
+            <li class="d-inline mx-2"><a class="text-white" href="#">Soporte</a></li>
+        </ul>
+    </footer>
+
+    <!-- Scripts de Bootstrap y Chart.js -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="scripts.js"></script>
+</body>
+</html>
