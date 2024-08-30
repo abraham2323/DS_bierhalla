@@ -5,34 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard Helpdesk</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-    <header>
-        <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-            <a class="navbar-brand" href="#">Helpdesk</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item"><a class="nav-link" href="#">Inicio</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Mi Perfil</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Cerrar Sesión</a></li>
-                </ul>
-            </div>
-        </nav>
-    </header>
+    <div id="header"></div>
     <div class="main-container d-flex">
-        <aside class="sidebar bg-light">
-            <ul class="nav flex-column">
-                <li class="nav-item"><a class="nav-link" href="#">Dashboard</a></li>
-                <li class="nav-item"><a class="nav-link" href="#">Tickets Abiertos</a></li>
-                <li class="nav-item"><a class="nav-link" href="#">Tickets Cerrados</a></li>
-                <li class="nav-item"><a class="nav-link" href="#">Reportes</a></li>
-                <li class="nav-item"><a class="nav-link" href="#">Configuración</a></li>
-            </ul>
-        </aside>
+        <div id="sidebar"></div>
         <main class="content p-4">
             <section class="charts">
                 <h2>Gráficos de Tickets</h2>
@@ -86,20 +64,13 @@
             </section>
         </main>
     </div>
-    <footer class="bg-primary text-white text-center py-3">
-        <p>&copy; 2024. Todos los derechos reservados.</p>
-        <ul class="list-unstyled">
-            <li class="d-inline mx-2"><a class="text-white" href="#">Privacidad</a></li>
-            <li class="d-inline mx-2"><a class="text-white" href="#">Términos de Servicio</a></li>
-            <li class="d-inline mx-2"><a class="text-white" href="#">Soporte</a></li>
-        </ul>
-    </footer>
+    <div id="footer"></div>
 
-    <!-- Scripts de Bootstrap y Chart.js -->
+    <!-- Scripts -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="scripts.js"></script>
+    <script src="js/main.js"></script>
 </body>
 </html>
