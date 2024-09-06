@@ -1,0 +1,108 @@
+/* * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 62.5%;}
+Estilos básicos */
+body {
+    display: grid;
+    grid-template-rows: 1fr auto;
+    background-color: #f8f9fa;
+    color: #333;
+}
+
+/* Estilos del header y navbar */
+.navbar {
+    background-color: #007bff;
+}
+
+.navbar .navbar-brand {
+    font-size: 24px;
+    font-weight: bold;
+    font-family: 'Arial', sans-serif;
+}
+
+.navbar .nav-link {
+    font-size: 16px;
+}
+
+/* Estilos del contenedor principal */
+.main-container {
+    flex: 1;
+    margin-left: 0;
+    margin-right: 0;
+}
+
+/* Estilos del aside (barra lateral) */
+.sidebar {
+    width: 250px;
+    background-color: #e9ecef;
+    padding: 20px;
+    height: 100vh;
+}
+
+.sidebar .nav-link {
+    font-size: 16px;
+    color: #333;
+}
+
+.sidebar .nav-link:hover {
+    color: #007bff;
+}
+
+/* Estilos del main (contenido central) */
+.content {
+    margin-left: 250px;
+}
+
+.charts h2 {
+    color: #007bff;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.card {
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.card-title {
+    color: #007bff;
+}
+
+/* Estilos del botón */
+.btn-primary {
+    background-color: #007bff;
+    border-color: #007bff;
+    font-weight: bold;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+    border-color: #004085;
+}
+
+/* Estilos del footer */
+footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+}
+
+footer p {
+    margin: 0;
+}
+
+footer a {
+    color: #fff;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}
