@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Configuración</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <div id="header"></div>
+    <div class="main-container d-flex">
+        <div id="sidebar"></div>
+        <main class="content p-4">
+            <section class="settings">
+                <h2>Configuración</h2>
+
+                <!-- Sección de Notificaciones -->
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <h5>Notificaciones</h5>
+                    </div>
+                    <div class="card-body">
+                        <form>
+                            <div class="form-check">
+                                <input type="checkbox" class="form-check-input" id="emailNotifications">
+                                <label class="form-check-label" for="emailNotifications">Recibir notificaciones por correo electrónico</label>
+                            </div>
+                            <div class="form-check">
+                                <input type="checkbox" class="form-check-input" id="smsNotifications">
+                                <label class="form-check-label" for="smsNotifications">Recibir notificaciones por SMS</label>
+                            </div>
+                            <button type="submit" class="btn btn-primary mt-3">Guardar Cambios</button>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Sección de Apariencia -->
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <h5>Apariencia</h5>
+                    </div>
+                    <div class="card-body">
+                        <form>
+                            <div class="form-group">
+                                <label for="theme">Tema</label>
+                                <select class="form-control" id="theme">
+                                    <option value="light">Claro</option>
+                                    <option value="dark">Oscuro</option>
+                                </select>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Aplicar Cambios</button>
+                        </form>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+    <div id="footer"></div>
+
+    <!-- Scripts -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
