@@ -1,9 +1,9 @@
 // js/main.js
 
 document.addEventListener('DOMContentLoaded', function () {
-    loadComponent('components/header.html', 'header');
-    loadComponent('components/sidebar.html', 'sidebar');
-    loadComponent('components/footer.html', 'footer');
+    loadComponent('../components/header.html', 'header');
+    loadComponent('../components/sidebar.html', 'sidebar');
+    loadComponent('../components/footer.html', 'footer');
 });
 
 function loadComponent(url, elementId) {
