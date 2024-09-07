@@ -42,8 +42,8 @@ body {
 }
 
 /* Estilos del aside (barra lateral) */
-.sidebar {
-    width: 250px;
+.sidebar bg-light {
+    width: 100px;
     background-color: #e9ecef;
     padding: 20px;
     height: 100vh;
@@ -60,7 +60,7 @@ body {
 
 /* Estilos del main (contenido central) */
 .content {
-    margin-left: 250px;
+    margin-left: 100px;
 }
 
 .charts h2 {
