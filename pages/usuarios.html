@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestión de Usuarios</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/styles.css">
+    <style>
+        .user-actions {
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        .user-actions button {
+            margin-left: 5px;
+        }
+
+        .list-group-item {
+            position: relative;
+        }
+
+        .search-bar {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div id="header"></div>
+    <div class="main-container d-flex">
+        <div id="sidebar"></div>
+        <main class="content p-4">
+            <h2>Gestión de Usuarios</h2>
+
+            <!-- Buscador de Usuarios -->
+            <div class="search-bar">
+                <input type="text" class="form-control" id="userSearch" placeholder="Buscar usuarios...">
+            </div>
+
+            <!-- Botón para Crear Nuevo Usuario -->
+            <div class="mb-4">
+                <a href="crear_usuario.html" class="btn btn-success">Crear Nuevo Usuario</a>
+            </div>
+
+            <!-- Sección de Usuarios -->
+            <section>
+                <h3>Todos los Usuarios</h3>
+                <ul class="list-group" id="usersList">
+                    <li class="list-group-item" data-name="Juan Pérez">
+                        Juan Pérez - juan.perez@example.com
+                        <div class="user-actions">
+                            <button class="btn btn-warning btn-sm" data-toggle="modal" data-target="#editUserModal" onclick="setEditUserDetails('Juan Pérez', 'juan.perez@example.com')">Editar</button>
+                            <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#deleteUserModal">Eliminar</button>
+                        </div>
+                    </li>
+                    <li class="list-group-item" data-name="Ana Gómez">
+                        Ana Gómez - ana.gomez@example.com
+                        <div class="user-actions">
+                            <button class="btn btn-warning btn-sm" data-toggle="modal" data-target="#editUserModal" onclick="setEditUserDetails('Ana Gómez', 'ana.gomez@example.com')">Editar</button>
+                            <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#deleteUserModal">Eliminar</button>
+                        </div>
+                    </li>
+                    <!-- Más usuarios... -->
+                </ul>
+            </section>
+
+            <!-- Modal para Editar Usuario -->
+            <div class="modal fade" id="editUserModal" tabindex="-1" role="dialog" aria-labelledby="editUserModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="editUserModalLabel">Editar Usuario</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form>
+                                <div class="form-group">
+                                    <label for="editUserName">Nombre</label>
+                                    <input type="text" class="form-control" id="editUserName" placeholder="Ingrese el nombre del usuario">
+                                </div>
+                                <div class="form-group">
+                                    <label for="editUserEmail">Correo Electrónico</label>
+                                    <input type="email" class="form-control" id="editUserEmail" placeholder="Ingrese el correo electrónico">
+                                </div>
+                                <div class="form-group">
+                                    <label for="editUserRole">Rol</label>
+                                    <select class="form-control" id="editUserRole">
+                                        <option>Administrador</option>
+                                        <option>Soporte</option>
+                                        <option>Usuario</option>
+                                    </select>
+                                </div>
+                                <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal para Confirmar Eliminación -->
+            <div class="modal fade" id="deleteUserModal" tabindex="-1" role="dialog" aria-labelledby="deleteUserModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="deleteUserModalLabel">Eliminar Usuario</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            ¿Estás seguro de que quieres eliminar este usuario?
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                            <button type="button" class="btn btn-danger">Eliminar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    <div id="footer"></div>
+
+    <!-- Scripts -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="../js/main.js"></script>
+    <script>
+        // Filtro de búsqueda
+        const searchInput = document.getElementById('userSearch');
+        const usersList = document.getElementById('usersList');
+
+        searchInput.addEventListener('keyup', () => {
+            const query = searchInput.value.toLowerCase();
+            filterUsers(usersList, query);
+        });
+
+        function filterUsers(list, query) {
+            const items = list.getElementsByClassName('list-group-item');
+            Array.from(items).forEach(item => {
+                const name = item.getAttribute('data-name').toLowerCase();
+                item.style.display = name.includes(query) ? '' : 'none';
+            });
+        }
+
+        // Función para establecer los detalles del usuario en el modal de edición
+        function setEditUserDetails(name, email) {
+            document.getElementById('editUserName').value = name;
+            document.getElementById('editUserEmail').value = email;
+            // Aquí deberías adaptar esto para mostrar la información real del usuario
+        }
+    </script>
+</body>
+</html>

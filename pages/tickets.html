@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestión de Tickets</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/styles.css">
+    <style>
+        .tickets-section {
+            display: none;
+        }
+
+        .active {
+            display: block;
+        }
+
+        .ticket-actions {
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        .ticket-actions button {
+            margin-left: 5px;
+        }
+
+        .list-group-item {
+            position: relative;
+        }
+
+        .search-bar {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div id="header"></div>
+    <div class="main-container d-flex">
+        <div id="sidebar"></div>
+        <main class="content p-4">
+            <h2>Gestión de Tickets</h2>
+
+            <!-- Buscador de Tickets -->
+            <div class="search-bar">
+                <input type="text" class="form-control" id="ticketSearch" placeholder="Buscar tickets...">
+            </div>
+
+            <!-- Botones para alternar entre tickets abiertos y cerrados -->
+            <div class="mb-4">
+                <button class="btn btn-primary" id="btnOpenTickets">Ver Tickets Abiertos</button>
+                <button class="btn btn-secondary" id="btnClosedTickets">Ver Tickets Cerrados</button>
+                <a href="crear_ticket.html" class="btn btn-success ml-2">Crear Nuevo Ticket</a>
+            </div>
+
+            <!-- Sección de Tickets Abiertos -->
+            <section class="tickets-section active" id="openTicketsSection">
+                <h3>Tickets Abiertos</h3>
+                <ul class="list-group" id="openTicketsList">
+                    <li class="list-group-item" data-title="Problema con la conexión a internet">
+                        Ticket #001 - Problema con la conexión a internet
+                        <div class="ticket-actions">
+                            <button class="btn btn-warning btn-sm" data-toggle="modal" data-target="#editTicketModal" onclick="setEditTicketDetails('Ticket #001 - Problema con la conexión a internet')">Editar</button>
+                            <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#deleteTicketModal">Eliminar</button>
+                        </div>
+                    </li>
+                    <!-- Más tickets... -->
+                </ul>
+            </section>
+
+            <!-- Sección de Tickets Cerrados -->
+            <section class="tickets-section" id="closedTicketsSection">
+                <h3>Tickets Cerrados</h3>
+                <ul class="list-group" id="closedTicketsList">
+                    <li class="list-group-item" data-title="Solucionado: Restablecimiento de contraseña">
+                        Ticket #004 - Solucionado: Restablecimiento de contraseña
+                        <div class="ticket-actions">
+                            <button class="btn btn-warning btn-sm" data-toggle="modal" data-target="#editTicketModal" onclick="setEditTicketDetails('Ticket #004 - Solucionado: Restablecimiento de contraseña')">Editar</button>
+                            <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#deleteTicketModal">Eliminar</button>
+                        </div>
+                    </li>
+                    <!-- Más tickets... -->
+                </ul>
+            </section>
+
+            <!-- Modal para Editar Ticket -->
+            <div class="modal fade" id="editTicketModal" tabindex="-1" role="dialog" aria-labelledby="editTicketModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="editTicketModalLabel">Editar Ticket</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form>
+                                <div class="form-group">
+                                    <label for="editTicketTitle">Título</label>
+                                    <input type="text" class="form-control" id="editTicketTitle" placeholder="Ingrese el título del ticket">
+                                </div>
+                                <div class="form-group">
+                                    <label for="editTicketDescription">Descripción</label>
+                                    <textarea class="form-control" id="editTicketDescription" rows="4" placeholder="Ingrese la descripción del ticket"></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label for="editTicketPriority">Prioridad</label>
+                                    <select class="form-control" id="editTicketPriority">
+                                        <option>Alta</option>
+                                        <option>Media</option>
+                                        <option>Baja</option>
+                                    </select>
+                                </div>
+                                <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal para Confirmar Eliminación -->
+            <div class="modal fade" id="deleteTicketModal" tabindex="-1" role="dialog" aria-labelledby="deleteTicketModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="deleteTicketModalLabel">Eliminar Ticket</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            ¿Estás seguro de que quieres eliminar este ticket?
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                            <button type="button" class="btn btn-danger">Eliminar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    <div id="footer"></div>
+
+    <!-- Scripts -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="../js/main.js"></script>
+    <script>
+        // Alternar entre las secciones de tickets
+        const btnOpenTickets = document.getElementById('btnOpenTickets');
+        const btnClosedTickets = document.getElementById('btnClosedTickets');
+        const openTicketsSection = document.getElementById('openTicketsSection');
+        const closedTicketsSection = document.getElementById('closedTicketsSection');
+
+        btnOpenTickets.addEventListener('click', () => {
+            openTicketsSection.classList.add('active');
+            closedTicketsSection.classList.remove('active');
+        });
+
+        btnClosedTickets.addEventListener('click', () => {
+            closedTicketsSection.classList.add('active');
+            openTicketsSection.classList.remove('active');
+        });
+
+        // Filtro de búsqueda
+        const searchInput = document.getElementById('ticketSearch');
+        const openTicketsList = document.getElementById('openTicketsList');
+        const closedTicketsList = document.getElementById('closedTicketsList');
+
+        searchInput.addEventListener('keyup', () => {
+            const query = searchInput.value.toLowerCase();
+            filterTickets(openTicketsList, query);
+            filterTickets(closedTicketsList, query);
+        });
+
+        function filterTickets(list, query) {
+            const items = list.getElementsByClassName('list-group-item');
+            Array.from(items).forEach(item => {
+                const title = item.getAttribute('data-title').toLowerCase();
+                item.style.display = title.includes(query) ? '' : 'none';
+            });
+        }
+
+        // Función para establecer los detalles del ticket en el modal de edición
+        function setEditTicketDetails(ticketDetails) {
+            document.getElementById('editTicketTitle').value = ticketDetails;
+            document.getElementById('editTicketDescription').value = ticketDetails;
+            // Aquí deberías adaptar esto para mostrar la información real del ticket
+        }
+    </script>
+</body>
+</html>
