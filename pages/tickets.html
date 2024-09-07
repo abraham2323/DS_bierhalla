@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestión de Tickets</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="../css/styles.css">
+    <style>
+        .tickets-section {
+            display: none;
+        }
+
+        .active {
+            display: block;
+        }
+
+        .ticket-actions {
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        .ticket-actions button {
+            margin-left: 5px;
+        }
+
+        .search-bar {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div id="header"></div>
+    <div class="main-container d-flex">
+        <div id="sidebar"></div>
+        <main class="content p-4">
+            <h2>Gestión de Tickets</h2>
+
+            <!-- Botones para alternar entre tickets abiertos y cerrados -->
+            <div class="mb-4">
+                <button class="btn btn-primary" id="btnOpenTickets">Ver Tickets Abiertos</button>
+                <button class="btn btn-secondary" id="btnClosedTickets">Ver Tickets Cerrados</button>
+                <a href="crear_ticket.html" class="btn btn-success ml-2">Crear Nuevo Ticket</a>
+            </div>
+
+            <!-- Sección de Tickets Abiertos -->
+            <section class="tickets-section active" id="openTicketsSection">
+                <h3>Tickets Abiertos</h3>
+                <table id="ticketsTable" class="display">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Título</th>
+                            <th>Descripción</th>
+                            <th>Editar</th>
+                            <th>Eliminar</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>001</td>
+                            <td>Problema con la conexión a internet</td>
+                            <td>Descripción del problema con la conexión a internet.</td>
+                            <td><button class="btn btn-warning btn-sm" data-toggle="modal" data-target="#editTicketModal" onclick="setEditTicketDetails(1, 'Problema con la conexión a internet', 'Descripción del problema con la conexión a internet.')">Editar</button></td>
+                            <td><button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#deleteTicketModal" onclick="setDeleteTicketDetails(1)">Eliminar</button></td>
+                        </tr>
+                        <tr>
+                            <td>002</td>
+                            <td>Fallo en la aplicación</td>
+                            <td>Descripción del fallo en la aplicación.</td>
+                            <td><button class="btn btn-warning btn-sm" data-toggle="modal" data-target="#editTicketModal" onclick="setEditTicketDetails(2, 'Fallo en la aplicación', 'Descripción del fallo en la aplicación.')">Editar</button></td>
+                            <td><button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#deleteTicketModal" onclick="setDeleteTicketDetails(2)">Eliminar</button></td>
+                        </tr>
+                        <!-- Más tickets... -->
+                    </tbody>
+                </table>
+            </section>
+
+            <!-- Sección de Tickets Cerrados -->
+            <section class="tickets-section" id="closedTicketsSection">
+                <h3>Tickets Cerrados</h3>
+                <table id="ticketsTable" class="display">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Título</th>
+                            <th>Descripción</th>
+                            <th>Editar</th>
+                            <th>Eliminar</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>003</td>
+                            <td>Reinicio de servidor</td>
+                            <td>Descripción del reinicio de servidor.</td>
+                            <td><button class="btn btn-warning btn-sm" data-toggle="modal" data-target="#editTicketModal" onclick="setEditTicketDetails(3, 'Reinicio de servidor', 'Descripción del reinicio de servidor.')">Editar</button></td>
+                            <td><button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#deleteTicketModal" onclick="setDeleteTicketDetails(3)">Eliminar</button></td>
+                        </tr>
+                        <tr>
+                            <td>004</td>
+                            <td>Solucionado: Restablecimiento de contraseña</td>
+                            <td>Descripción del restablecimiento de contraseña.</td>
+                            <td><button class="btn btn-warning btn-sm" data-toggle="modal" data-target="#editTicketModal" onclick="setEditTicketDetails(4, 'Solucionado: Restablecimiento de contraseña', 'Descripción del restablecimiento de contraseña.')">Editar</button></td>
+                            <td><button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#deleteTicketModal" onclick="setDeleteTicketDetails(4)">Eliminar</button></td>
+                        </tr>
+                        <!-- Más tickets... -->
+                    </tbody>
+                </table>
+            </section>
+
+            <!-- Modal para Editar Ticket -->
+            <div class="modal fade" id="editTicketModal" tabindex="-1" role="dialog" aria-labelledby="editTicketModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="editTicketModalLabel">Editar Ticket</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form id="editTicketForm">
+                                <input type="hidden" id="editTicketId">
+                                <div class="form-group">
+                                    <label for="editTicketTitle">Título</label>
+                                    <input type="text" class="form-control" id="editTicketTitle" placeholder="Ingrese el título del ticket">
+                                </div>
+                                <div class="form-group">
+                                    <label for="editTicketDescription">Descripción</label>
+                                    <textarea class="form-control" id="editTicketDescription" rows="4" placeholder="Ingrese la descripción del ticket"></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label for="editTicketPriority">Prioridad</label>
+                                    <select class="form-control" id="editTicketPriority">
+                                        <option>Alta</option>
+                                        <option>Media</option>
+                                        <option>Baja</option>
+                                    </select>
+                                </div>
+                                <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal para Confirmar Eliminación -->
+            <div class="modal fade" id="deleteTicketModal" tabindex="-1" role="dialog" aria-labelledby="deleteTicketModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="deleteTicketModalLabel">Eliminar Ticket</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            ¿Estás seguro de que quieres eliminar este ticket?
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                            <button type="button" class="btn btn-danger" id="confirmDeleteButton">Eliminar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    <div id="footer"></div>
+
+    <!-- Scripts -->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="../js/main.js"></script>
+    <script src="../js/tickets.js"></script> <!-- Incluye tu archivo JS aquí -->
+</body>
+</html>
