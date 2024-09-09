@@ -1,21 +1,24 @@
+console.log('login')
 const loginForm = document.getElementById('login-form'); 
 const loginUsername = document.getElementById('login-username');
 const loginPassword = document.getElementById('login-password');
 
 loginForm.addEventListener('submit', (e) => {
+  console.log('submit event')
   e.preventDefault();
   let errors = [];
 
-  if(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*(\W|_)).{5,}$/.test(password.value)){
+  if(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*(\W|_)).{5,}$/.test(loginPassword.value)){
     error.push('La contraseña no cumple con los requisitos');
  }
 
-  if (username.value !== 'sigecont' || password.value !== 'asdf') { //reemplazar una vez tengamos la api
+  if (loginUsername.value !== 'sigecont' || loginPassword.value !== 'asdf') { //reemplazar una vez tengamos la api
     errors.push('credenciales invalidas');
   }
 
   if (errors.length > 0) {
-    alert(errors.join('\n'));tr
+    console.log('error')
+    alert(errors.join('\n'));
   }
   else {
     window.location.href = "dashboard.html";

@@ -12,11 +12,11 @@ loginForm.addEventListener('submit', (e) => {
         errors.push('El campo email es requerido');
     }
 
-    if(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*(\W|_)).{6,24}$/.test(password.value)){
+    if(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*(\W|_)).{6,24}$/.test(registerPassword.value)){
         errors.push('La contraseña no cumple con los requisitos');
     }
 
-    if (password.value !== confirmPassword.value) {
+    if (registerPassword.value !== registerConfirmPassword.value) {
         errors.push('Las contraseñas no coinciden');
     }
 
@@ -24,7 +24,7 @@ loginForm.addEventListener('submit', (e) => {
         alert(errors.join('\n'));tr
     }
     else {
-        window.location.href = "dashboard.html";
+        window.location.href = "login.html";
     }
 
 });
