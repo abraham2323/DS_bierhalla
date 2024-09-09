@@ -19,6 +19,12 @@ body {
   color: white;
 }
 
+/* Estilos globales*/
+.info {
+    color: red;
+    font-size: 14px;
+}
+
 /* Estilos del header y navbar */
 .navbar {
     background-color: #007bff;
@@ -89,6 +95,8 @@ body {
     background-color: #0056b3;
     border-color: #004085;
 }
+
+
 
 /* Estilos del footer */
 footer {
