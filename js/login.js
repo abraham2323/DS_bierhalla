@@ -21,7 +21,7 @@ loginForm.addEventListener('submit', (e) => {
     alert(errors.join('\n'));
   }
   else {
-    window.location.href = "dashboard.html";
+    window.location.href = "./pages/dashboard.html";
   }
 
 });
