@@ -1,25 +1,25 @@
 
-console.log('configPage.js loaded');
+console.log('config loaded');
 const themeChanger = document.getElementById('theme-changer');
 const theme = document.getElementById('theme');
 const themeError = document.getElementById('theme-error');
 
 themeChanger.addEventListener('submit', (e) => {
     let messages = [];
-    if (theme.value === '' || theme.value == null) {
-      messages.push('Name is required')
+    console.log(theme.value)
+    if (theme.value === 'light' || theme.value === 'dark') {
+      setCookie('theme', theme.value, 400);
     }
-    
-    if (theme.value === 'dark') {
-        darkmode();
+    else if (theme.value === '' || theme.value === null) {
+      messages.push('Tema requerido');
+    }
+    else {
+      messages.push('Tema invalido');
     }
   
     if (messages.length > 0) {
-      e.preventDefault()
-      themeError.innerText = messages.join(', ')
+      e.preventDefault();
+      themeError.innerText = messages.join(', ');
     }
   })
 
-function darkmode() {
-    // codigo api o cookie para cambiar tema
-  }
