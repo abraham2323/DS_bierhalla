@@ -1,12 +1,13 @@
 const apiUrl = 'http://aps.pregps.cl:4000/api-docs';
 
 
+
 function login(user, password)
 {
-    fetch(apiUrl + '/login', {
+    fetch(apiUrl  + '/login', {
         method: "POST", 
-        body: JSON.stringify({ username: user, password: password }),
         headers: {"Content-Type": "application/json",},
+        body: JSON.stringify({ "nombre_usuario": user, "password": password }),
     })
       .then(response => {
         if (!response.ok) {
@@ -21,10 +22,12 @@ function login(user, password)
         return response.json();
       })
       .then(data => {
-        outputElement.textContent = JSON.stringify(data, null, 2);
+        setCookie('token', data.token, 1);
+        window.location.href = "../pages/dashboard.html";
       })
       .catch(error => {
         console.error('Error:', error);
+        return error;
       });
 }
 
